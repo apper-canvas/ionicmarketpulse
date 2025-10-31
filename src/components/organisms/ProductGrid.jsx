@@ -10,13 +10,22 @@ import { cn } from "@/utils/cn";
 
 const ProductGrid = ({ 
   categoryFilter = null, 
-  searchTerm = "", 
+  searchTerm = "",
   priceRange = { min: 0, max: 10000 },
   sortBy = "featured",
   viewMode = "grid",
   initialLimit = 12,
   loadMoreIncrement = 12
 }) => {
+  const normalizeString = (str) => {
+    if (!str) return '';
+    return str
+      .toLowerCase()
+      .replace(/-/g, ' ')
+      .replace(/\s+/g, ' ')
+      .replace(/\band\b/gi, '&')
+      .trim();
+  };
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -35,10 +44,11 @@ useEffect(() => {
         let allProducts = await productService.getAll();
         
         // Apply filters
-        if (categoryFilter) {
+if (categoryFilter) {
+          const normalizedFilter = normalizeString(categoryFilter);
           allProducts = allProducts.filter(product => 
-            product.category?.toLowerCase() === categoryFilter.toLowerCase() ||
-            product.subcategory?.toLowerCase() === categoryFilter.toLowerCase()
+            normalizeString(product.category) === normalizedFilter ||
+            normalizeString(product.subcategory) === normalizedFilter
           );
         }
 
@@ -85,10 +95,8 @@ useEffect(() => {
         setLoading(false);
       }
     };
-
-    loadProducts();
+loadProducts();
   }, [categoryFilter, searchTerm, priceRange, sortBy]);
-
   // Apply display limit
   const displayedProducts = products.slice(0, displayLimit);
   const hasMoreProducts = products.length > displayLimit;
@@ -101,14 +109,20 @@ useEffect(() => {
     return <Error message={error} onRetry={() => window.location.reload()} />;
   }
 
-  if (displayedProducts.length === 0) {
+if (displayedProducts.length === 0) {
+    const displayCategoryName = categoryFilter 
+      ? categoryFilter.replace(/-/g, ' ').replace(/\s+/g, ' ').replace(/\band\b/gi, '&').trim().replace(/\b\w/g, l => l.toUpperCase())
+      : '';
+    
     return (
       <Empty
         title="No Products Found"
         description={
           searchTerm
             ? `We couldn't find any products matching "${searchTerm}". Try adjusting your search or filters.`
-            : "No products available in this category"
+            : categoryFilter
+            ? `No products available in ${displayCategoryName}`
+            : "No products available"
         }
         icon="Package"
         actionText="Browse All Categories"

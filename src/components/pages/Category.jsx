@@ -20,8 +20,11 @@ const Category = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   // Format category name for display
-  const displayCategoryName = categoryName
-    .replace("-", " ")
+const displayCategoryName = categoryName
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\band\b/gi, "&")
+    .trim()
     .replace(/\b\w/g, l => l.toUpperCase());
 
   useEffect(() => {
@@ -30,8 +33,8 @@ const Category = () => {
       try {
         const allProducts = await productService.getAll();
         const categoryProducts = allProducts.filter(product => 
-          product.category.toLowerCase() === displayCategoryName.toLowerCase() ||
-          product.subcategory?.toLowerCase() === displayCategoryName.toLowerCase()
+product.category.toLowerCase().replace(/\s+/g, " ").trim() === displayCategoryName.toLowerCase().replace(/\s+/g, " ").trim() ||
+          product.subcategory?.toLowerCase().replace(/\s+/g, " ").trim() === displayCategoryName.toLowerCase().replace(/\s+/g, " ").trim()
         );
         setProducts(categoryProducts);
       } catch (error) {
@@ -42,8 +45,7 @@ const Category = () => {
     };
 
     loadCategoryProducts();
-  }, [categoryName, displayCategoryName]);
-
+}, [categoryName]);
   const handleFilterChange = (newFilters) => {
     setFilters(prev => ({ ...prev, ...newFilters }));
   };
@@ -194,7 +196,7 @@ const Category = () => {
         {/* Products Grid */}
         <div className="lg:col-span-3">
 <ProductGrid
-            categoryFilter={displayCategoryName}
+categoryFilter={categoryName}
             priceRange={filters.priceRange}
             sortBy={filters.sortBy}
             initialLimit={12}
