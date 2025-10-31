@@ -32,8 +32,8 @@ const displayCategoryName = categoryName
     const loadCategoryProducts = async () => {
       setLoading(true);
       try {
-        const allProducts = await productService.getAll();
-const normalizeForComparison = (str) => 
+const allProducts = await productService.getAll();
+        const normalizeForComparison = (str) => 
           str.toLowerCase()
             .replace(/\s+/g, " ")
             .replace(/\b(and|&)\b/gi, 'and')
@@ -41,8 +41,8 @@ const normalizeForComparison = (str) =>
         
         const normalizedCategory = normalizeForComparison(displayCategoryName);
         const categoryProducts = allProducts.filter(product => 
-          normalizeForComparison(product.category) === normalizedCategory ||
-          (product.subcategory && normalizeForComparison(product.subcategory) === normalizedCategory)
+          normalizeForComparison(product.category_c) === normalizedCategory ||
+          (product.subcategory_c && normalizeForComparison(product.subcategory_c) === normalizedCategory)
         );
         setProducts(categoryProducts);
       } catch (error) {
@@ -53,7 +53,7 @@ const normalizeForComparison = (str) =>
     };
 
     loadCategoryProducts();
-}, [categoryName]);
+  }, [categoryName]);
   const handleFilterChange = (newFilters) => {
     setFilters(prev => ({ ...prev, ...newFilters }));
   };

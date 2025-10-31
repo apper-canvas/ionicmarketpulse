@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
-import SearchBar from "@/components/molecules/SearchBar";
+import { useSelector } from "react-redux";
 import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/layouts/Root";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
+import SearchBar from "@/components/molecules/SearchBar";
 import { cn } from "@/utils/cn";
-
 const Header = () => {
   const navigate = useNavigate();
   const { cartItems, cartCount } = useCart();
+  const { user, isAuthenticated } = useSelector(state => state.user);
+  const { logout } = useAuth();
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const categories = [
@@ -68,7 +72,7 @@ const Header = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center space-x-4">
+<div className="flex items-center space-x-4">
             {/* Mobile Search */}
             <Button
               variant="ghost"
@@ -97,6 +101,58 @@ const Header = () => {
                 </Badge>
               )}
             </Button>
+
+            {/* User Menu / Login */}
+            {isAuthenticated && user ? (
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="p-2"
+                >
+                  <ApperIcon name="User" className="w-5 h-5" />
+                </Button>
+                
+                {showUserMenu && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-10" 
+                      onClick={() => setShowUserMenu(false)}
+                    />
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-20">
+                      <div className="px-4 py-2 border-b border-gray-200">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {user.firstName} {user.lastName}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {user.emailAddress}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setShowUserMenu(false);
+                          logout();
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                      >
+                        <ApperIcon name="LogOut" className="w-4 h-4" />
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate("/login")}
+                className="p-2"
+              >
+                <ApperIcon name="LogIn" className="w-5 h-5" />
+              </Button>
+            )}
 
             {/* Mobile Menu Button */}
             <Button

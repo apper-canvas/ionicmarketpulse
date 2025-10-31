@@ -41,51 +41,50 @@ useEffect(() => {
       setError(null);
 
       try {
-        let allProducts = await productService.getAll();
+let allProducts = await productService.getAll();
         
         // Apply filters
-if (categoryFilter) {
+        if (categoryFilter) {
           const normalizedFilter = normalizeString(categoryFilter);
           allProducts = allProducts.filter(product => 
-            normalizeString(product.category) === normalizedFilter ||
-            normalizeString(product.subcategory) === normalizedFilter
+            normalizeString(product.category_c) === normalizedFilter ||
+            normalizeString(product.subcategory_c) === normalizedFilter
           );
         }
 
         if (searchTerm) {
           const term = searchTerm.toLowerCase();
           allProducts = allProducts.filter(product =>
-            product.name?.toLowerCase().includes(term) ||
-            product.description?.toLowerCase().includes(term) ||
-            product.category?.toLowerCase().includes(term)
+            product.name_c?.toLowerCase().includes(term) ||
+            product.description_c?.toLowerCase().includes(term) ||
+            product.category_c?.toLowerCase().includes(term)
           );
         }
 
         // Apply price filter
         allProducts = allProducts.filter(product =>
-          product.price >= priceRange.min && product.price <= priceRange.max
+          product.price_c >= priceRange.min && product.price_c <= priceRange.max
         );
 
         // Apply sorting
         switch (sortBy) {
           case "price-low":
-            allProducts.sort((a, b) => a.price - b.price);
+            allProducts.sort((a, b) => a.price_c - b.price_c);
             break;
           case "price-high":
-            allProducts.sort((a, b) => b.price - a.price);
+            allProducts.sort((a, b) => b.price_c - a.price_c);
             break;
           case "rating":
-            allProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+            allProducts.sort((a, b) => (b.rating_c || 0) - (a.rating_c || 0));
             break;
           case "newest":
             allProducts.sort((a, b) => (b.Id || 0) - (a.Id || 0));
             break;
           default: // featured
             allProducts.sort((a, b) => 
-              ((b.rating || 0) * (b.reviewCount || 0)) - ((a.rating || 0) * (a.reviewCount || 0))
+              ((b.rating_c || 0) * (b.review_count_c || 0)) - ((a.rating_c || 0) * (a.review_count_c || 0))
             );
         }
-
         setProducts(allProducts);
         
       } catch (err) {

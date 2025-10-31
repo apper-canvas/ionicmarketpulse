@@ -79,7 +79,7 @@ const Checkout = () => {
     try {
       // Create order
       const orderData = {
-        items: cartItems,
+items: cartItems,
         subtotal: cartTotal,
         shipping: shipping,
         tax: tax,
@@ -90,10 +90,10 @@ const Checkout = () => {
       };
 
       const order = await orderService.create(orderData);
-      
-      // Clear cart and redirect to confirmation
+
       clearCart();
       toast.success("Order placed successfully!");
+
       navigate(`/order-confirmation/${order.Id}`);
       
     } catch (error) {

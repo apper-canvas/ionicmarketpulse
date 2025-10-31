@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import ApperIcon from "@/components/ApperIcon";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
-import RatingDisplay from "@/components/molecules/RatingDisplay";
-import PriceDisplay from "@/components/molecules/PriceDisplay";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCart } from "@/hooks/useCart";
 import { productService } from "@/services/api/productService";
 import { reviewService } from "@/services/api/reviewService";
 import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
+import Home from "@/components/pages/Home";
+import Cart from "@/components/pages/Cart";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import PriceDisplay from "@/components/molecules/PriceDisplay";
+import RatingDisplay from "@/components/molecules/RatingDisplay";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -31,7 +33,7 @@ const ProductDetail = () => {
       setError("");
 
       try {
-        const productData = await productService.getById(parseInt(id));
+const productData = await productService.getById(parseInt(id));
         setProduct(productData);
 
         const reviewsData = await reviewService.getByProductId(parseInt(id));
@@ -86,13 +88,13 @@ const ProductDetail = () => {
         </button>
         <ApperIcon name="ChevronRight" className="w-4 h-4" />
         <button 
-          onClick={() => navigate(`/category/${product.category.toLowerCase()}`)}
+onClick={() => navigate(`/category/${product.category_c.toLowerCase()}`)}
           className="hover:text-primary"
         >
-          {product.category}
+          {product.category_c}
         </button>
         <ApperIcon name="ChevronRight" className="w-4 h-4" />
-        <span className="text-gray-900">{product.name}</span>
+        <span className="text-gray-900">{product.name_c}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -101,15 +103,15 @@ const ProductDetail = () => {
           {/* Main Image */}
           <div className="aspect-square bg-gray-100 rounded-2xl overflow-hidden">
             <img
-              src={product.images[selectedImage]}
-              alt={product.name}
-              className="w-full h-full object-cover"
+src={product.images[selectedImage]}
+              alt={product.name_c}
+              className="w-full h-full object-contain"
             />
           </div>
 
           {/* Image Thumbnails */}
           {product.images.length > 1 && (
-            <div className="flex space-x-4 overflow-x-auto pb-2">
+            <div className="flex space-x-3 overflow-x-auto pb-2">
               {product.images.map((image, index) => (
                 <button
                   key={index}
@@ -122,7 +124,7 @@ const ProductDetail = () => {
                 >
                   <img
                     src={image}
-                    alt={`${product.name} ${index + 1}`}
+                    alt={`${product.name_c} ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -136,53 +138,53 @@ const ProductDetail = () => {
           {/* Product Title and Category */}
           <div className="space-y-2">
             <Badge variant="outline" size="sm">
-              {product.category}
+{product.category_c}
             </Badge>
             <h1 className="text-3xl font-bold text-gray-900 leading-tight">
-              {product.name}
+              {product.name_c}
             </h1>
           </div>
 
-          {/* Rating and Reviews */}
+          {/* Rating */}
           <RatingDisplay
-            rating={product.rating}
-            reviewCount={product.reviewCount}
+            rating={product.rating_c}
+            reviewCount={product.review_count_c}
             size="lg"
-            showCount={true}
+            className="mb-6"
           />
 
           {/* Price */}
           <PriceDisplay
-            price={product.price}
-            originalPrice={product.originalPrice}
-            discount={product.discount}
+            price={product.price_c}
+            originalPrice={product.original_price_c}
+            discount={product.discount_c}
             size="xl"
             showDiscount={true}
+            className="mb-6"
           />
 
           {/* Stock Status */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 mb-6">
             <ApperIcon 
-              name={product.inStock ? "Check" : "X"} 
-              className={`w-5 h-5 ${product.inStock ? "text-green-500" : "text-red-500"}`} 
+              name={product.in_stock_c ? "Check" : "X"} 
+              className={`w-5 h-5 ${product.in_stock_c ? "text-green-500" : "text-red-500"}`} 
             />
-            <span className={`font-medium ${product.inStock ? "text-green-600" : "text-red-600"}`}>
-              {product.inStock ? "In Stock" : "Out of Stock"}
+            <span className={`font-medium ${product.in_stock_c ? "text-green-600" : "text-red-600"}`}>
+              {product.in_stock_c ? "In Stock" : "Out of Stock"}
             </span>
           </div>
 
-          {/* Product Description */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900">Description</h3>
+{/* Description */}
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3">Description</h2>
             <p className="text-gray-600 leading-relaxed">
-              {product.description}
+              {product.description_c}
             </p>
           </div>
-
           {/* Features */}
-          {product.features && product.features.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900">Key Features</h3>
+{product.features && product.features.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h2>
               <ul className="space-y-2">
                 {product.features.map((feature, index) => (
                   <li key={index} className="flex items-start space-x-2">
@@ -194,8 +196,8 @@ const ProductDetail = () => {
             </div>
           )}
 
-          {/* Quantity and Add to Cart */}
-          {product.inStock && (
+          {/* Add to Cart Section */}
+          {product.in_stock_c && (
             <div className="space-y-6">
               {/* Quantity Selector */}
               <div className="space-y-2">
@@ -281,7 +283,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      {/* Reviews Section */}
+{/* Reviews Section */}
       {reviews.length > 0 && (
         <div className="mt-16">
           <div className="border-t border-gray-200 pt-16">
@@ -291,32 +293,33 @@ const ProductDetail = () => {
 
             <div className="space-y-8">
               {reviews.slice(0, 5).map((review) => (
-                <div key={review.Id} className="bg-surface rounded-lg p-6 shadow-sm">
+                <div key={review.Id} className="bg-surface rounded-lg p-6 shadow-sm border border-gray-100">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="space-y-2">
+                    <div className="flex-1">
                       <RatingDisplay
-                        rating={review.rating}
+                        rating={review.rating_c}
+                        reviewCount={0}
                         showCount={false}
                         size="sm"
                       />
-                      <h4 className="font-semibold text-gray-900">
-                        {review.title}
+                      <h4 className="font-semibold text-gray-900 mt-2">
+                        {review.title_c}
                       </h4>
                     </div>
-                    <div className="text-right text-sm text-gray-500">
-                      <p>{review.author}</p>
-                      <p>{new Date(review.date).toLocaleDateString()}</p>
-                    </div>
                   </div>
-                  
-                  <p className="text-gray-600 leading-relaxed">
-                    {review.content}
+                  <div className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+                    <p>{review.author_c}</p>
+                    <p>{new Date(review.date_c).toLocaleDateString()}</p>
+                  </div>
+
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {review.content_c}
                   </p>
-                  
-                  {review.helpful > 0 && (
-                    <div className="mt-4 flex items-center space-x-2 text-sm text-gray-500">
+
+                  {review.helpful_c > 0 && (
+                    <div className="flex items-center space-x-2 text-sm text-gray-500">
                       <ApperIcon name="ThumbsUp" className="w-4 h-4" />
-                      <span>{review.helpful} people found this helpful</span>
+                      <span>{review.helpful_c} people found this helpful</span>
                     </div>
                   )}
                 </div>
