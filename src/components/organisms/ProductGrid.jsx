@@ -22,8 +22,8 @@ const normalizeString = (str) => {
     return str
       .toLowerCase()
       .replace(/-/g, ' ')
+      .replace(/&/g, 'and')
       .replace(/\s+/g, ' ')
-      .replace(/\b(and|&)\b/gi, 'and')
       .trim();
   };
   const [products, setProducts] = useState([]);
@@ -44,12 +44,14 @@ useEffect(() => {
 let allProducts = await productService.getAll();
         
         // Apply filters
-        if (categoryFilter) {
+if (categoryFilter) {
           const normalizedFilter = normalizeString(categoryFilter);
-          allProducts = allProducts.filter(product => 
-            normalizeString(product.category_c) === normalizedFilter ||
-            normalizeString(product.subcategory_c) === normalizedFilter
-          );
+          allProducts = allProducts.filter(product => {
+            const normalizedCategory = normalizeString(product.category_c);
+            const normalizedSubcategory = normalizeString(product.subcategory_c);
+            return normalizedCategory === normalizedFilter || 
+                   normalizedSubcategory === normalizedFilter;
+          });
         }
 
         if (searchTerm) {

@@ -23,10 +23,8 @@ const Category = () => {
 const displayCategoryName = categoryName
     .replace(/-/g, " ")
     .replace(/\s+/g, " ")
-    .replace(/\b(and|&)\b/gi, (match) => match.toLowerCase() === 'and' ? '&' : 'and')
     .trim()
-    .replace(/\b\w/g, l => l.toUpperCase())
-    .replace(/\bAnd\b/g, '&');
+    .replace(/\b\w/g, l => l.toUpperCase());
 
 useEffect(() => {
     const loadCategoryProducts = async () => {
