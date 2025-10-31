@@ -1,0 +1,54 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'react-toastify/dist/ReactToastify.css';
+
+/* Custom toast styles */
+.Toastify__toast {
+  @apply text-sm font-medium rounded-lg shadow-lg;
+}
+
+.Toastify__toast--success {
+  @apply bg-white border-l-4 border-green-500 text-gray-800;
+}
+
+.Toastify__toast--error {
+  @apply bg-white border-l-4 border-red-500 text-gray-800;
+}
+
+.Toastify__toast--info {
+  @apply bg-white border-l-4 border-blue-500 text-gray-800;
+}
+
+.Toastify__toast--warning {
+  @apply bg-white border-l-4 border-amber-500 text-gray-800;
+}
+
+.Toastify__progress-bar {
+  @apply bg-primary;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Font loading optimization */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');

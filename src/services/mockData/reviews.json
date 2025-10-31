@@ -1,0 +1,212 @@
+[
+  {
+    "Id": 1,
+    "productId": 1,
+    "rating": 5,
+    "title": "Absolutely love this phone!",
+    "content": "The iPhone 15 Pro Max exceeded my expectations. The camera quality is incredible, especially in low light conditions. The titanium build feels premium and the battery lasts all day with heavy usage.",
+    "author": "Sarah M.",
+    "date": "2024-01-15",
+    "helpful": 23
+  },
+  {
+    "Id": 2,
+    "productId": 1,
+    "rating": 4,
+    "title": "Great phone but expensive",
+    "content": "This is definitely a high-quality device with excellent performance. The A17 Pro chip handles everything smoothly. Only downside is the price, but if you can afford it, it's worth the investment.",
+    "author": "Mike R.",
+    "date": "2024-01-10",
+    "helpful": 18
+  },
+  {
+    "Id": 3,
+    "productId": 2,
+    "rating": 5,
+    "title": "Perfect for professional work",
+    "content": "As a video editor, this MacBook Pro handles 4K editing like a breeze. The M3 chip is incredibly fast and the battery life is amazing. The display quality is stunning for color-critical work.",
+    "author": "Jennifer L.",
+    "date": "2024-01-12",
+    "helpful": 31
+  },
+  {
+    "Id": 4,
+    "productId": 3,
+    "rating": 4,
+    "title": "Great picture quality for the price",
+    "content": "Really impressed with the 4K picture quality and HDR support. Smart TV features work well and the interface is intuitive. Good value for money compared to other brands.",
+    "author": "Robert K.",
+    "date": "2024-01-08",
+    "helpful": 15
+  },
+  {
+    "Id": 5,
+    "productId": 4,
+    "rating": 4,
+    "title": "Comfortable and stylish",
+    "content": "These sneakers are incredibly comfortable for all-day wear. The Air Max technology really makes a difference. Love the design and they go well with most outfits.",
+    "author": "Emma T.",
+    "date": "2024-01-14",
+    "helpful": 12
+  },
+  {
+    "Id": 6,
+    "productId": 5,
+    "rating": 5,
+    "title": "Classic jeans that never go out of style",
+    "content": "Perfect fit and high-quality denim. These jeans are built to last and get better with age. The 501 cut is timeless and works for any occasion.",
+    "author": "David H.",
+    "date": "2024-01-11",
+    "helpful": 19
+  },
+  {
+    "Id": 7,
+    "productId": 6,
+    "rating": 5,
+    "title": "Kitchen game changer",
+    "content": "This mixer has revolutionized my baking. It handles heavy cookie dough with ease and the attachments are incredibly useful. Worth every penny for serious bakers.",
+    "author": "Maria G.",
+    "date": "2024-01-09",
+    "helpful": 28
+  },
+  {
+    "Id": 8,
+    "productId": 7,
+    "rating": 5,
+    "title": "Best vacuum I've ever owned",
+    "content": "The suction power is incredible and the laser detection feature reveals dust you never knew was there. Battery life is excellent and it's surprisingly lightweight.",
+    "author": "Thomas W.",
+    "date": "2024-01-13",
+    "helpful": 22
+  },
+  {
+    "Id": 9,
+    "productId": 8,
+    "rating": 4,
+    "title": "Professional quality racket",
+    "content": "Great control and power balance. The feel is excellent and it's helped improve my game significantly. Professional quality construction that shows in every shot.",
+    "author": "Lisa C.",
+    "date": "2024-01-07",
+    "helpful": 14
+  },
+  {
+    "Id": 10,
+    "productId": 9,
+    "rating": 4,
+    "title": "Excellent workout experience",
+    "content": "The classes are motivating and the instructors are fantastic. The bike is well-built and the touchscreen is responsive. Great way to stay fit at home.",
+    "author": "Kevin B.",
+    "date": "2024-01-16",
+    "helpful": 17
+  },
+  {
+    "Id": 11,
+    "productId": 10,
+    "rating": 5,
+    "title": "Life-changing book about money",
+    "content": "This book completely changed how I think about personal finance. The stories are engaging and the lessons are practical. Every adult should read this book.",
+    "author": "Amanda J.",
+    "date": "2024-01-05",
+    "helpful": 45
+  },
+  {
+    "Id": 12,
+    "productId": 11,
+    "rating": 5,
+    "title": "Perfect everyday gloss",
+    "content": "The Fenty Gloss Bomb is my go-to lip product. It's not sticky, has great shine, and the color is universally flattering. Love the peach-vanilla scent too!",
+    "author": "Taylor S.",
+    "date": "2024-01-17",
+    "helpful": 26
+  },
+  {
+    "Id": 13,
+    "productId": 12,
+    "rating": 5,
+    "title": "Outstanding noise cancellation",
+    "content": "These headphones have incredible noise cancellation technology. Perfect for flights and the sound quality is exceptional. Battery life easily lasts through long trips.",
+    "author": "James P.",
+    "date": "2024-01-06",
+    "helpful": 33
+  },
+  {
+    "Id": 14,
+    "productId": 13,
+    "rating": 4,
+    "title": "Lightweight and packable",
+    "content": "Perfect for hiking and travel. Packs down incredibly small but provides good wind protection. Sustainable materials are a bonus. Great for layering.",
+    "author": "Rachel M.",
+    "date": "2024-01-18",
+    "helpful": 11
+  },
+  {
+    "Id": 15,
+    "productId": 14,
+    "rating": 5,
+    "title": "Professional cookware set",
+    "content": "These pans heat evenly and are built to last. The tri-ply construction makes a real difference in cooking performance. Investment quality cookware.",
+    "author": "Chef Carlos",
+    "date": "2024-01-04",
+    "helpful": 39
+  },
+  {
+    "Id": 16,
+    "productId": 15,
+    "rating": 5,
+    "title": "Keeps drinks cold all day",
+    "content": "Amazing insulation technology - ice water stays ice cold for the full 24 hours as advertised. Durable construction and the colors are beautiful.",
+    "author": "Nicole F.",
+    "date": "2024-01-19",
+    "helpful": 21
+  },
+  {
+    "Id": 17,
+    "productId": 16,
+    "rating": 5,
+    "title": "Practical habit-building guide",
+    "content": "Clear provides actionable strategies that actually work. The 1% better approach is genius and the book is full of real examples. Highly recommend!",
+    "author": "Mark T.",
+    "date": "2024-01-03",
+    "helpful": 52
+  },
+  {
+    "Id": 18,
+    "productId": 17,
+    "rating": 4,
+    "title": "Beautiful everyday lipstick",
+    "content": "Pillow Talk is such a flattering shade on everyone. The formula is comfortable and long-wearing. A bit pricey but the quality justifies the cost.",
+    "author": "Sophia L.",
+    "date": "2024-01-20",
+    "helpful": 16
+  },
+  {
+    "Id": 19,
+    "productId": 18,
+    "rating": 4,
+    "title": "Great tablet for productivity",
+    "content": "The M1 chip makes this incredibly fast for multitasking. Display is gorgeous and battery life is excellent. Works great with the Apple Pencil for note-taking.",
+    "author": "Alex D.",
+    "date": "2024-01-02",
+    "helpful": 24
+  },
+  {
+    "Id": 20,
+    "productId": 19,
+    "rating": 5,
+    "title": "Most comfortable leggings ever",
+    "content": "These feel like a second skin! Perfect for yoga and everyday wear. The fabric is incredibly soft and they maintain their shape after many washes.",
+    "author": "Yoga Instructor Maya",
+    "date": "2024-01-21",
+    "helpful": 38
+  },
+  {
+    "Id": 21,
+    "productId": 20,
+    "rating": 5,
+    "title": "Saves so much time cooking",
+    "content": "This Instant Pot has changed how I meal prep. Cooks food so much faster than conventional methods and the results are consistently great. Love all the preset programs.",
+    "author": "Busy Mom Jennifer",
+    "date": "2024-01-01",
+    "helpful": 42
+  }
+]
