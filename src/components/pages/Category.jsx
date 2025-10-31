@@ -193,10 +193,12 @@ const Category = () => {
 
         {/* Products Grid */}
         <div className="lg:col-span-3">
-          <ProductGrid
+<ProductGrid
             categoryFilter={displayCategoryName}
             priceRange={filters.priceRange}
             sortBy={filters.sortBy}
+            initialLimit={12}
+            loadMoreIncrement={12}
           />
         </div>
       </div>
