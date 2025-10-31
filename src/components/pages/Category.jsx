@@ -23,18 +23,26 @@ const Category = () => {
 const displayCategoryName = categoryName
     .replace(/-/g, " ")
     .replace(/\s+/g, " ")
-    .replace(/\band\b/gi, "&")
+    .replace(/\b(and|&)\b/gi, (match) => match.toLowerCase() === 'and' ? '&' : 'and')
     .trim()
-    .replace(/\b\w/g, l => l.toUpperCase());
+    .replace(/\b\w/g, l => l.toUpperCase())
+    .replace(/\bAnd\b/g, '&');
 
   useEffect(() => {
     const loadCategoryProducts = async () => {
       setLoading(true);
       try {
         const allProducts = await productService.getAll();
+const normalizeForComparison = (str) => 
+          str.toLowerCase()
+            .replace(/\s+/g, " ")
+            .replace(/\b(and|&)\b/gi, 'and')
+            .trim();
+        
+        const normalizedCategory = normalizeForComparison(displayCategoryName);
         const categoryProducts = allProducts.filter(product => 
-product.category.toLowerCase().replace(/\s+/g, " ").trim() === displayCategoryName.toLowerCase().replace(/\s+/g, " ").trim() ||
-          product.subcategory?.toLowerCase().replace(/\s+/g, " ").trim() === displayCategoryName.toLowerCase().replace(/\s+/g, " ").trim()
+          normalizeForComparison(product.category) === normalizedCategory ||
+          (product.subcategory && normalizeForComparison(product.subcategory) === normalizedCategory)
         );
         setProducts(categoryProducts);
       } catch (error) {

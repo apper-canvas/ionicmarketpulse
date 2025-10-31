@@ -20,10 +20,10 @@ const ProductGrid = ({
   const normalizeString = (str) => {
     if (!str) return '';
     return str
-      .toLowerCase()
+.toLowerCase()
       .replace(/-/g, ' ')
       .replace(/\s+/g, ' ')
-      .replace(/\band\b/gi, '&')
+      .replace(/\b(and|&)\b/gi, (match) => match === '&' ? 'and' : '&')
       .trim();
   };
   const [products, setProducts] = useState([]);
