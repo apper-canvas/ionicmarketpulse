@@ -17,13 +17,13 @@ const ProductGrid = ({
   initialLimit = 12,
   loadMoreIncrement = 12
 }) => {
-  const normalizeString = (str) => {
+const normalizeString = (str) => {
     if (!str) return '';
     return str
-.toLowerCase()
+      .toLowerCase()
       .replace(/-/g, ' ')
       .replace(/\s+/g, ' ')
-      .replace(/\b(and|&)\b/gi, (match) => match === '&' ? 'and' : '&')
+      .replace(/\b(and|&)\b/gi, 'and')
       .trim();
   };
   const [products, setProducts] = useState([]);

@@ -28,14 +28,15 @@ const displayCategoryName = categoryName
     .replace(/\b\w/g, l => l.toUpperCase())
     .replace(/\bAnd\b/g, '&');
 
-  useEffect(() => {
+useEffect(() => {
     const loadCategoryProducts = async () => {
       setLoading(true);
       try {
-const allProducts = await productService.getAll();
+        const allProducts = await productService.getAll();
         const normalizeForComparison = (str) => 
           str.toLowerCase()
-            .replace(/\s+/g, " ")
+            .replace(/-/g, ' ')
+            .replace(/\s+/g, ' ')
             .replace(/\b(and|&)\b/gi, 'and')
             .trim();
         
